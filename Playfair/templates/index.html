@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playfair Cipher Tool</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>⚔️ Playfair Cipher Tool</h1>
+        <p>Hệ thống mã hóa & giải mã cổ điển song ngữ (Digraph Substitution)</p>
+      </header>
+
+      <div class="main-card">
+        <form method="POST" action="/">
+          <div class="form-group">
+            <label for="key_text">🔑 Secret Key (Từ khóa):</label>
+            <input
+              type="text"
+              id="key_text"
+              name="key_text"
+              value="{{ key_text }}"
+              placeholder="Ví dụ: MONARCHY"
+              required
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="input_text">📝 Input Text (Văn bản tiếng Anh):</label>
+            <textarea
+              id="input_text"
+              name="input_text"
+              rows="4"
+              placeholder="Nhập Plaintext để mã hóa HOẶC Ciphertext để giải mã..."
+              required
+            >
+{{ input_text }}</textarea
+            >
+            <small>Lưu ý: Ký tự 'J' sẽ được tự động chuyển thành 'I'.</small>
+          </div>
+
+          <div class="button-group">
+            <button
+              type="submit"
+              name="action"
+              value="encrypt"
+              class="btn btn-encrypt"
+            >
+              🔒 ENCRYPT (Mã hóa)
+            </button>
+            <button
+              type="submit"
+              name="action"
+              value="decrypt"
+              class="btn btn-decrypt"
+            >
+              🔓 DECRYPT (Giải mã)
+            </button>
+          </div>
+        </form>
+
+        {% if result_text %}
+        <div class="result-section">
+          <div class="result-header">
+            <span>KẾT QUẢ: {{ mode }}</span>
+          </div>
+          <div class="result-box">{{ result_text }}</div>
+          {% if 'DECRYPTION' in mode %}
+          <div class="note">
+            *Lưu ý: Nếu thấy chữ 'X' lạ trong văn bản (ví dụ HELLXO), đó là ký
+            tự đệm của thuật toán.
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
