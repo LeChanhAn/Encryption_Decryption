@@ -1,0 +1,146 @@
+:root {
+  --primary-color: #4a90e2;
+  --bg-color: #f4f6f9;
+  --card-bg: #ffffff;
+  --text-color: #333;
+  --code-font: "Roboto Mono", monospace;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: var(--card-bg);
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+header p {
+  color: #7f8c8d;
+  font-size: 0.9em;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #34495e;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: var(--code-font);
+  font-size: 14px;
+  box-sizing: border-box; /* Quan trọng để không bị vỡ layout */
+  transition: border-color 0.3s;
+  resize: vertical;
+}
+
+textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.btn-decrypt {
+  width: 100%;
+  padding: 15px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-decrypt:hover {
+  background-color: #357abd;
+}
+
+/* Phần hiển thị kết quả */
+.result-box {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px dashed #e0e0e0;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.result-box h2 {
+  font-size: 1.2em;
+  color: #27ae60;
+  margin-bottom: 15px;
+}
+
+.key-display {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  background: #e8f5e9;
+  padding: 10px;
+  border-radius: 6px;
+  color: #2e7d32;
+}
+
+.key-display .value {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-left: 10px;
+}
+
+.text-display .label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.text-display .content {
+  background-color: #2d3436;
+  color: #fab1a0; /* Màu chữ code dễ đọc */
+  padding: 15px;
+  border-radius: 8px;
+  font-family: var(--code-font);
+  white-space: pre-wrap; /* Giữ xuống dòng */
+  word-break: break-word;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

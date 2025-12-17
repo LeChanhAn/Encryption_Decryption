@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caesar Cipher Breaker</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🔐 Caesar Brute-Force</h1>
+        <p>
+          Nhập mã hóa (Ciphertext) để tìm bản rõ (Plaintext) tiếng Anh hợp lý
+          nhất.
+        </p>
+      </header>
+
+      <form method="POST" action="/">
+        <div class="input-group">
+          <label for="ciphertext">Nhập đoạn mã cần giải:</label>
+          <textarea
+            name="ciphertext"
+            id="ciphertext"
+            rows="5"
+            placeholder="Ví dụ: Khoor Zruog..."
+          >
+{{ input_cipher if input_cipher else '' }}</textarea
+          >
+        </div>
+        <button type="submit" class="btn-decrypt">🔍 Decryption</button>
+      </form>
+
+      {% if k is not none %}
+      <div class="result-box">
+        <h2>Kết quả tìm thấy</h2>
+        <div class="key-display">
+          <span class="label">Khóa (Key):</span>
+          <span class="value">{{ k }}</span>
+        </div>
+
+        <div class="text-display">
+          <span class="label">Plaintext:</span>
+          <div class="content">{{ plaintext }}</div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
