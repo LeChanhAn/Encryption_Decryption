@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DES Encryption Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="container">
+            <header>
+                <div class="badge">Classic Algorithm</div>
+                <h1>DES Crypto Tool</h1>
+                <p>Mô phỏng thuật toán Data Encryption Standard (64-bit Block)</p>
+            </header>
+
+            {% if error %}
+            <div class="notification error">
+                <span class="icon">🚫</span>
+                <span class="msg">{{ error }}</span>
+            </div>
+            {% endif %}
+
+            <form method="POST" action="/">
+                <div class="controls-panel">
+                    
+                    <div class="control-group radio-group">
+                        <label>Hành động:</label>
+                        <div class="options">
+                            <label class="option-card {{ 'active' if form.action == 'encrypt' else '' }}">
+                                <input type="radio" name="action" value="encrypt" onclick="uiUpdate()" 
+                                {{ 'checked' if form.action == 'encrypt' else '' }}>
+                                <span>🔒 Mã hóa</span>
+                            </label>
+
+                            <label class="option-card {{ 'active' if form.action == 'decrypt' else '' }}">
+                                <input type="radio" name="action" value="decrypt" onclick="uiUpdate()"
+                                {{ 'checked' if form.action == 'decrypt' else '' }}>
+                                <span>🔓 Giải mã</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="mode">Chế độ hoạt động (Mode):</label>
+                        <select name="mode" id="mode" onchange="uiUpdate()">
+                            <option value="CBC" {{ 'selected' if form.mode == 'CBC' else '' }}>CBC (Cipher Block Chaining)</option>
+                            <option value="ECB" {{ 'selected' if form.mode == 'ECB' else '' }}>ECB (Electronic Codebook)</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="key">Khóa bí mật (Key – 16 ký tự HEX):</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="key" id="key" maxlength="16" 
+                                   placeholder="VD: 0123456789ABCDEF" 
+                                   value="{{ form.key }}" required>
+                            <span class="hint">DES Key = 8 bytes (nhập 16 ký tự HEX)</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group" id="iv-group" style="display: none;">
+                        <label for="iv">Vector khởi tạo (IV – 16 ký tự HEX):</label>
+                        <input type="text" name="iv" id="iv" maxlength="16"
+                               placeholder="VD: A1B2C3D4E5F60708" 
+                               value="{{ form.iv }}">
+                    </div>
+                </div>
+
+                <div class="text-panel">
+                    <div class="control-group">
+                        <label id="input-label">Nội dung đầu vào:</label>
+                        <textarea name="input_text" id="input_text" rows="4" placeholder="Nhập văn bản..." required>{{ form.input_text }}</textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Thực thi lệnh</button>
+
+                    {% if result %}
+                    <div class="result-area">
+                        <h3>Kết quả:</h3>
+                        
+                        {% if iv_result %}
+                        <div class="result-item">
+                            <span class="label">Generated IV (Hex):</span>
+                            <div class="code-box">{{ iv_result }}</div>
+                        </div>
+                        {% endif %}
+
+                        <div class="result-item">
+                            <span class="label">Output:</span>
+                            <div class="code-box primary-result" style="white-space: pre-wrap; word-break: break-all;">{{ result }}</div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>uiUpdate();</script>
+</body>
+</html>
