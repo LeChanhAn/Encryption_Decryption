@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES-128 Pure Python Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ AES-128 Simulation</h1>
+            <p>Mô phỏng thuật toán AES Pure Python (CBC & CFB)</p>
+        </header>
+
+        {% if error %}
+        <div class="alert error">
+            ⚠️ <strong>Lỗi:</strong> {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="/">
+            <div class="grid-layout">
+                <div class="card input-section">
+                    <h2>📥 Dữ liệu đầu vào</h2>
+                    
+                    <div class="form-group">
+                        <label>Hành động:</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="action" value="encrypt" onclick="toggleIV(this.value)" 
+                                {{ 'checked' if form.action == 'encrypt' else '' }}> 
+                                🔒 Mã hóa (Encrypt)
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="action" value="decrypt" onclick="toggleIV(this.value)"
+                                {{ 'checked' if form.action == 'decrypt' else '' }}> 
+                                🔓 Giải mã (Decrypt)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mode">Chế độ (Mode):</label>
+                        <select name="mode" id="mode">
+                            <option value="cbc" {{ 'selected' if form.mode == 'cbc' else '' }}>CBC (Cipher Block Chaining)</option>
+                            <option value="cfb" {{ 'selected' if form.mode == 'cfb' else '' }}>CFB (Cipher Feedback)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="key">Khóa bí mật (Key):</label>
+                        <input type="text" name="key" id="key" maxlength="32" 
+                               placeholder="VD: 32 ký tự Hex hoặc 16 ký tự Text" 
+                               value="{{ form.key }}" required 
+                               style="font-family: monospace;">
+                        <small>Nhập 32 ký tự HEX (ví dụ: 2b7e...) hoặc 16 ký tự văn bản.</small>
+                    </div>
+
+                    <div class="form-group" id="iv-group" style="display: none;">
+                        <label for="iv">Initialization Vector (IV - Hex):</label>
+                        <input type="text" name="iv" id="iv" 
+                               placeholder="Nhập chuỗi IV hex (32 ký tự)..." 
+                               value="{{ form.iv }}"
+                               style="font-family: monospace;">
+                    </div>
+
+                    <div class="form-group">
+                        <label id="input-label">Nội dung (Plaintext):</label>
+                        <textarea name="input_text" rows="5" placeholder="Nhập nội dung..." required>{{ form.input_text }}</textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">🚀 Thực hiện</button>
+                </div>
+
+                <div class="card output-section">
+                    <h2>📤 Kết quả</h2>
+                    
+                    {% if result %}
+                    <div class="result-box">
+                        {% if iv_result %}
+                        <div class="field">
+                            <span class="label">IV (Hex) được sinh ra:</span>
+                            <div class="code-block" style="font-family: monospace;">{{ iv_result }}</div>
+                        </div>
+                        {% endif %}
+
+                        <div class="field">
+                            <span class="label">Output:</span>
+                            <div class="code-block main-result" style="white-space: pre-wrap; word-break: break-all;">{{ result }}</div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="placeholder-text">Kết quả sẽ hiển thị tại đây...</div>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Chạy ngay khi load trang để set đúng trạng thái ẩn hiện IV
+        toggleIV("{{ form.action }}");
+    </script>
+</body>
+</html>
