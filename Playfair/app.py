@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import playfair  # Import logic từ file playfair.py
+import playfair
 
 app = Flask(__name__)
 

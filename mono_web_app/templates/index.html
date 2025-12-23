@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Monoalphabetic Breaker (No JS)</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        background: #f4f4f4;
+      }
+      .card {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      button {
+        width: 100%;
+        padding: 15px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background: #1d4ed8;
+      }
+      .key-pair {
+        display: inline-block;
+        border: 1px solid #ccc;
+        padding: 5px;
+        margin: 2px;
+        text-align: center;
+        background: #eee;
+      }
+      .cipher {
+        color: red;
+        font-weight: bold;
+        display: block;
+      }
+      .plain {
+        color: green;
+        font-weight: bold;
+        display: block;
+        border-top: 1px solid #ccc;
+      }
+      .result-text {
+        background: #222;
+        color: #0f0;
+        padding: 15px;
+        font-family: monospace;
+        white-space: pre-wrap;
+      }
+      .error {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>🔓 Monoalphabetic Breaker</h1>
+
+      <form method="POST" action="/">
+        <label><strong>Nhập Ciphertext:</strong></label>
+        <textarea name="ciphertext" placeholder="Dán mã vào đây...">
+{{ ciphertext }}</textarea
+        >
+        <button type="submit">🚀 Bắt đầu Phá Mã (Đợi khoảng 5s)</button>
+      </form>
+
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+    </div>
+
+    {% if result %}
+    <div class="card">
+      <h3>Điểm tin cậy (Fitness Score): {{ result.score|round(2) }}</h3>
+
+      <h4>Bảng Khóa Tìm Được:</h4>
+      <div>
+        {% for cipher, plain in result.key.items() %}
+        <div class="key-pair">
+          <span class="cipher">{{ cipher|upper }}</span>
+          <span class="plain">{{ plain|upper }}</span>
+        </div>
+        {% endfor %}
+      </div>
+
+      <h4>Nội Dung Giải Mã:</h4>
+      <div class="result-text">{{ result.plaintext }}</div>
+    </div>
+    {% endif %}
+  </body>
+</html>

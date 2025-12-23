@@ -1,0 +1,25 @@
+--- KEY (BẢNG THAY THẾ) ---
+A->Y | B->P | C->A | D->L | E->H | F->U | G->I | H->M | I->E | J->G | K->F | L->S | M->T | N->K | O->Z | P->X | Q->B | R->O | S->N | T->D | U->J | V->Q | W->V | X->R | Y->C | Z->W
+
+Fitness Score: -7829.93
+--------------------------------------------------
+
+--- PLAINTEXT ---
+
+At the Kennedy Center Honors on Sunday, President Trump praised Ted Sarandos, the co-chief executive of Netflix, but noted that the company had a “very big market share,” adding that he would be “involved” in the regulatory review. It is highly unusual for a president to have a direct say on major corporate deals, which are typically reviewed by independent regulators at a distance from politicians’ input.
+
+Another wrinkle that Paramount disclosed on Monday was that Affinity Partners, the private equity firm founded by Mr. Trump’s son-in-law Jared Kushner, was lined up as an investor to back the offer.
+
+On a conference call Monday, Mr. Ellison said that Paramount decided to take its offer directly to shareholders after Warner Bros. Discovery failed to respond to it last week. Mr. Ellison also said he told Mr. Zaslav that Paramount’s proposal was not its “best and final” offer.
+
+Mr. Ellison was also critical of Netflix’s chance of getting the deal through regulatory review. The company has a big share of the streaming business, Mr. Ellison said, even if it might argue that the market for overall TV viewership is broader.
+
+“Saying that streaming is not a market is a little bit like looking at the beverage market and saying that Coke and Pepsi can merge because Budweiser is a replacement to it,” Mr. Ellison said.
+
+Andy Gordon, the chief strategy officer at Paramount, said during the call that he valued the traditional TV channels owned by Warner Bros. Discovery — including CNN and TNT — at roughly $1 per share, substantially less than the value executives at Warner Bros. have put on those businesses.
+
+Paramount has wrangled a large coalition of backers for its offer, including Affinity Partners, Mr. Kushner’s firm, and sovereign wealth firms from the Middle East, including Saudi Arabia’s Public Investment Fund and the Qatar Investment Authority. The Ellison family is “fully backstopping” the bid, Paramount said, essentially guaranteeing that the offer has the necessary money behind it.
+
+Netflix executives came out swinging several hours after Paramount’s bid, indicating that they would not back down. Mr. Sarandos said at a media conference that Paramount’s “move was entirely expected.”
+
+“We’re super confident we’re going to get it across the line and finish,” he continued.
