@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vigenère Auto-Breaker</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="logo">🔓 CRYPTO ANALYZER</div>
+        <h1>Vigenère Cipher Breaker</h1>
+        <p>Phá mã tự động sử dụng Index of Coincidence & Chi-Square Analysis</p>
+      </header>
+
+      <main>
+        <section class="card input-section">
+          <form method="POST" action="/">
+            <div class="form-group">
+              <label for="ciphertext">Nhập đoạn mã hóa (Ciphertext):</label>
+              <textarea
+                name="ciphertext"
+                id="ciphertext"
+                rows="6"
+                placeholder="Paste đoạn mã cần phá vào đây (Ví dụ: KHOOR ZRUOG...)"
+                required
+              >
+{{ ciphertext }}</textarea
+              >
+            </div>
+            <button type="submit" class="btn-hack">Decrypt</button>
+          </form>
+        </section>
+
+        {% if key %}
+        <section class="card output-section">
+          <div class="key-display">
+            <span class="label">PHÁT HIỆN KHÓA (KEY):</span>
+            <span class="key-value">{{ key }}</span>
+            <span class="key-len">(Độ dài: {{ key|length }})</span>
+          </div>
+
+          <div class="plaintext-display">
+            <div class="top-bar">
+              <span class="label">KẾT QUẢ GIẢI MÃ (PLAINTEXT):</span>
+            </div>
+            <div class="content">{{ plaintext }}</div>
+          </div>
+        </section>
+        {% endif %}
+      </main>
+    </div>
+  </body>
+</html>
